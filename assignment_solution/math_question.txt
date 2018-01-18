@@ -1,0 +1,13 @@
+Sample Invocations:
+YesIntent yes
+YesIntent sure
+YesIntent I'm ready
+YesIntent I am ready
+AnswerIntent {answer_given}
+AnswerIntent The answer is {answer_given}
+AnswerIntent It is {answer_given}
+
+Lamba endpoint of the Alexa skill: https://pjnn85m8xb.execute-api.us-east-1.amazonaws.com/dev
+
+YouTube Url of the simulated Echosim.io for the Alexa skill: https://youtu.be/hqDMMfnxDl8
+

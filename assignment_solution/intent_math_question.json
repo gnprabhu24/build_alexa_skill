@@ -1,0 +1,16 @@
+{
+  "intents": [
+  	{
+      "intent": "YesIntent"
+    },
+    {
+      "slots": [
+        {
+          "name": "answer_given",
+          "type": "AMAZON.NUMBER"
+        }
+      ],
+      "intent": "AnswerIntent"
+    }
+  ]
+}

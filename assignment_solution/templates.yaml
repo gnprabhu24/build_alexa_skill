@@ -1,0 +1,7 @@
+welcome: Are you ready for a basic Math Question?
+
+round: What is {{ question }} ?
+
+correct: That is correct!
+
+wrong: Sorry, that's the wrong answer. The correct answer is {{answer}}.

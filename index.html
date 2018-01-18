@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cloud Grad Project</title>
+
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/customstyles.css">
+</head>
+<body>
+	<div class="header">
+		<h1>Build an Amazon Alexa Skill</h1>
+	</div>
+	<div class="main_div animated">
+			<div class="sub_div animated fadeIn">
+				<div class="sub_reading_div">
+					<h4>This assignment will get you started and exploring into developing an interactive skill for Amazon’s Alexa.</h4>
+				</div>
+			</div>
+
+			<div class="sub_div animated slideInRight">
+				<div class="sub_reading_div">
+					<h3>About Alexa:</h3>
+					<h4>
+						Alexa is a cloud based intelligent personal assistant developed by Amazon and was initially launched for the Amazon Echo and later the Echo dot devices. Alexa is capable of playing music, setting to-do lists, fetching real-time information such as the weather and performing several other tasks by taking a users voice request. It can also be used to control smart devices. 
+					</h4>
+					
+					<div class="div_source">
+						<h5><a href="https://en.wikipedia.org/wiki/Amazon_Alexa">- Wikipedia</a></h5>
+					</div>
+				</div>	
+			</div>
+			<div class="sub_div animated slideInLeft">
+				<div class="sub_reading_div">
+					<h3>Requirements for the assignment:</h3>
+					<ul>
+						<li>Amazon AWS account.</li>
+						<li>PyCharm IDE.</li>
+						<li>awscli - command line tool for AWS console management.</li>
+						<li>flask-ask - framework to build Alexa skill</li>
+						<li>ngrok - command line tool for generating 'HTTPS' url of locally hosted apps.</li>
+						<li>zappa - server Python framework to deploy Alexa skills as AWS lambda functions.</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="sub_div animated slideInRight">		
+					<h3>Assignment Task:</h3>
+					<h4>Build an Alexa skill which on launch will ask the user whether the he / she is ready to answer a basic mathematic question. If the user says "Sure", "Yes", "I'm ready" or "I am ready", then Alexa should ask a random math calulation question of two operands ( eg.: 2 + 3 ). The questions should include addition of two numbers, multiplication of two numbers or subtraction of two numbers. The numbers to operate on should be from 0 to 20. If the user fails to give the wrong answer, then Alexa should give an appropriate answer and give out the right answer.</h4>
+			</div>
+
+			<div class="sub_div animated fadeIn">
+
+				<h3>Setup for building a sample Alexa skill:</h3>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						1. Open Pycharm IDE and create a pure python project.
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						2. Go to the project settings and create a virtual environment to locally host the Alexa skill. Create the virtual environment directory in the PyCharm Project create and make sure you do not select the inherit global-site packages option.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/setup/2a.png"/>
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/setup/2b.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						3. Install the following packages to the PyCharm Project using the package installer:
+						<ul>
+							<li>flask-ask</li>
+							<li>awscli</li>
+							<li>zappa</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						4. <a href="https://ngrok.com/download">Download</a> ngrok and place the unzipped ngrok command line tool in the PyCharm project. It is used to create a secure tunnel to the localhost on which the Flask-ask Alexa skill app is locally hosted and gives an "https" endpoint to configure the endpoint of the Alexa skill.
+					</div>
+				</div>
+
+			</div>
+
+			<div class="sub_div animated fadeIn">
+
+				<h3>Building a sample Alexa skill:</h3>
+
+				<div class="steps animated slideInRight">
+					<div>
+						1. Create a python file(eg. sampleAlexa.py). Import the required packages and initialise a Flask ask app.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/1.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						2. Log in the dashboard of the <a href="https://developer.amazon.com/edw/home.html#/">Alexa developer console</a>. Go to the Alexa tab and click on add a new skill.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/2.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						3. The assignment is to build a custom interaction model. Give a name  and also an Invocation name to the Alexa skill. The invocation name is the name the user will use to call the skill. Save these details and click on next to go to the interaction model.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/3.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						4. In the Interaction model, the intent schema is where you can define the name of the Intents and also name and type of variables the Alexa skill intent will use. THe schema is wriiten in JSON format. Following is the Intent schema of the sample Alexa skill:
+					</div>
+					<div class="div_img">
+						<textarea readonly="readonly" class="hint_img json_textarea" >{
+  "intents": [
+   	{
+      "slots": [
+        {
+          "name": "firstnum",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "secondnumber",
+          "type": "AMAZON.NUMBER"
+        }
+      ],
+      "intent": "MultiplicationIntent"
+    } 
+   ]
+}</textarea>
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						5. In the Interaction model, the sample utterances are the sample commands used to interact with the skill. The values in the brace are the variables which Alexa will pass to the functions that will be written in the python file in PyCharm.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/5.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						6. Now in the python file on PyCharm, you can use the intents created to add functionality to them.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/6.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						7. Add the main function to the python code which will run the flask ask app and save the python file.
+						</br></br>
+						samplealexa.py - <a href="additional_files/samplealexa.py" target="_blank">Click to Download.</a>
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/7.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						8. Run the python file in Pycharm. The PyCharm project will start be hosting on the localhost. Use the ngrok command from the PyCharm terminal to start get an "https" url for the tunnelled localhost. 
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/8a.png"/>
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/8b.png"/>
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/8c.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						9.  Copy the url and paste it in the default for the  service endpoint type "HTTPS". Select the "No" option for the "Provide geographical region endpoints?". Save the details and Click on next.
+						</br></br>
+						- Hint: For Mac operating systems, if the ngrok command is throwing certificate errors. Use the following command in the terminal of the project: /Applications/Python\ 3.6/Install\ Certificates.command
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/9.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						10. Select the option "My development endpoint is a sub-domain of a domain that has a wildcard certificate from a certificate authority" as the default certificate for the endpoint.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/10.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						11. Now you can test the python skill locally hosted by typing in a sample utterance. You can even listen to Alexa's response for the sample utterance request by clicking on the button below the response.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/11.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						12. Now we will be hosting the Alexa skill as a lamba function on the AWS console. In the PyCharm's terminal for the Project, use the command "zappa init" to create config files for the lamba function to be hosted. Use all the default options for the configuration questions asked.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/12.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						13. Now to host the Alexa skill as a lamba funtion to the AWS server, use the "zappa deploy dev" command in the terminal. Note: "dev" is the default environment name used while creating the config file.
+					</div>
+					<div class="div_img">
+						<img class="hint_img" src="images/building_skill/13.png"/>
+					</div>
+				</div>
+
+				<div class="steps animated slideInLeft">
+					<div>
+						14. Once the Alexa skill is successfully deployed on the AWS server, you can use the lamba url as the Default endpoint url in step 9.
+					</div>
+				</div>
+
+				<div class="steps animated slideInRight">
+					<div>
+						15. Login to <a href="https://echosim.io/">Echosim.io</a> with your AWS account to simulate the sample alexa skill. Following is the simulation of the Sample skill built: 
+					</div>
+					<div class="div_img">
+						<iframe id="start_video" width="600" height="400" src="" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="sub_div animated slideInLeft">
+				<div class="sub_reading_div">
+					<h3>Deliverables for the Assignment:</h3>
+					<ol type="1">
+						<li>Python file (eg.: samplealexa.py) and additional files such as YAML templates.</li>
+						<li>Intent schema in a json file and name it "intent_" followed by name of the python file. (eg.: intent_samplealexa.json).</li>
+						<li>Create a text file with name of python file.(eg.: samplealexa.txt). 
+							<ul style="list-style-type:none">
+								<li>- Include the sample invocations.</li>
+								<li>- Include the Lamba endpoint of the Alexa skill.</li>
+								<li>- YouTube Url for the screengrab of the simulated Echosim.io for the Alexa skill developed for this assignment. Following is a example simulation video of the Alexa skill for the assignment:
+								<div>
+									<iframe id="final_video" width="600" height="400" src="" frameborder="0" allowfullscreen></iframe>
+								</div>
+								</li>
+							</ul>
+						</li>
+					</ol>
+
+					<div class="steps">
+						<div class="final_span">
+						Compress all the files in a zip and email the same to gprabhu@mail.usf.edu
+						Note: Mention email subject as - Grad Project: 'Student_UID', 'Student_Major'.</div>
+					</div>
+				</div>
+			</div>
+
+			<div>&nbsp;</div>
+	</div>
+	<div class="footer">
+		&nbsp;
+	</div>
+
+	<script type="text/javascript">
+		
+		window.onload = function(){
+			var start_video = "https://youtube.com/embed/PixCHHbzpGI";
+			var final_video = "https://youtube.com/embed/hqDMMfnxDl8";
+
+			setTimeout(function() {
+				document.getElementById('start_video').src = start_video;
+				document.getElementById('final_video').src = final_video;
+			}, 1000);
+			
+		};
+
+	</script>
+</body>
+</html>
